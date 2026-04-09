@@ -50,7 +50,8 @@ export default function AddUser() {
     // ---------------------------
     setisLoading(true);
     axios
-      .post("/api/users", finalData , {
+      .post("https://decopia-management-system.runasp.net/api/users", finalData , {
+        
         headers: {
          "Content-Type": "application/json",
          Authorization: `Bearer ${localStorage.getItem("token")}`, 

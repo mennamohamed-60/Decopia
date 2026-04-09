@@ -49,7 +49,7 @@ export default function PayloadForm({
       const clientIP = await getClientIP();
 
       const response = await axios.post(
-        "/rules-api/rules/analyze",
+        "https://pen-testing-rules-engine.runasp.net/api/rules/analyze",
         {
           payload,
           clientId: clientIP,

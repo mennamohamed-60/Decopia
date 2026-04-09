@@ -39,7 +39,8 @@ export default function UserManagement() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("/api/users", {
+        const res = await axios.get("https://decopia-management-system.runasp.net/api/users", {
+          
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -86,7 +87,8 @@ export default function UserManagement() {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`/api/users/${id}`, {
+      await axios.delete(`https://decopia-management-system.runasp.net/api/users/${id}`, {
+        
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

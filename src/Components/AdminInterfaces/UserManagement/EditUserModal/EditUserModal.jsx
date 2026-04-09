@@ -20,7 +20,9 @@ export default function EditUserModal({ isOpen, onClose, user, setUsers }) {
     };
 
     try {
-      await axios.put(`/api/users/${user.publicId}`, updatedUser, {
+      await axios.put(`https://decopia-management-system.runasp.net/api/users/${user.publicId}`, updatedUser, {
+        
+        
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

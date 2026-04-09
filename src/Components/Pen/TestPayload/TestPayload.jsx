@@ -50,7 +50,7 @@ export default function TestPayload() {
 
     try {
       const response = await axios.post(
-        "/rules-api/evaluation/submit",
+        "https://pen-testing-rules-engine.runasp.net/api/evaluation/submit",
         requestBody,
         {
           headers: {

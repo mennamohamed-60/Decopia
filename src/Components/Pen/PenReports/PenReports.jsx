@@ -12,7 +12,7 @@ export default function PenReports() {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const res = await axios.get("/rules-api/evaluation/attack-summary", {
+        const res = await axios.get("https://pen-testing-rules-engine.runasp.net/api/evaluation/attack-summary", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -20,7 +20,7 @@ export default function PenReports() {
 
         setAttacks(res.data.attacks);
       } catch (err) {
-        console.error("Error fetching attack summary", err);
+        // console.error("Error fetching attack summary", err);
       } finally {
         setLoading(false);
       }

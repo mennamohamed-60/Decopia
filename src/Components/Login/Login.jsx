@@ -57,13 +57,12 @@ export default function Login() {
 }
 
   function MyHandleSubmit(data) {
-    console.log(data);
+    
     setisLoading(true); 
     axios
-      .post("/api/auth/login", data)
+      .post("https://decopia-management-system.runasp.net/api/auth/login", data)
       .then(function (x) {
         setisLoading(false);
-        console.log(x.data);
         localStorage.setItem("token", x.data.token);
         localStorage.setItem("role", x.data.role);
         
