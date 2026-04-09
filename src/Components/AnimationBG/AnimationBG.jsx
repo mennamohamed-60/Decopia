@@ -15,48 +15,57 @@ export default function AnimationBG() {
   }, []);
 
   const options = useMemo(
-    () => ({
-      background: {
-        color: {
-          value: "#0a0a1a",
-        },
-      },
+  () => ({
+    background: {
+      color: { value: "#0a0a1a" },
+    },
 
-      
-      particles: {
-        number: {
-          value: 150,
-        },
-        color: {
-          value: "#14b8a6",
-        },
-        links: {
+    particles: {
+      number: { value: 150 }, 
+      color: { value: "#14b8a6" },
+      links: {
+        enable: true,
+        color: "#14b8a6",
+        distance: 120,
+        opacity: 0.6,
+        width: 1.5,
+      },
+      move: {
+        enable: true,
+        speed: 1,
+      },
+      size: { value: 3 },
+    },
+
+    interactivity: {
+      events: {
+        onHover: {
           enable: true,
-          color: "#14b8a6",
-          distance: 120,
-          opacity: 0.6,
-          width: 1.5,
-        },
-        move: {
-          enable: true,
-          speed: 1,
-        },
-        size: {
-          value: 3,
+          mode: "repulse",
         },
       },
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: "repulse",
+    },
+
+    responsive: [
+      {
+        maxWidth: 768, 
+        options: {
+          particles: {
+            number: {
+              value: 60, 
+            },
+            links: {
+              distance: 80, 
+            },
           },
         },
       },
-      retina_detect: true,
-    }),
-    []
-  );
+    ],
+
+    retina_detect: true,
+  }),
+  []
+);
 
   if (!init) return null;
 
