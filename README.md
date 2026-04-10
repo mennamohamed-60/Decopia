@@ -125,7 +125,7 @@ Pen Tester has access to:
 
 ## Screenshots 🖼️
 ### Home page
-![home_page](public/screenshots/home page.png)
+![home_page](public/screenshots/home-page.png)
 
 ### Login
 ![login](public/screenshots/login.png)
@@ -134,17 +134,17 @@ Pen Tester has access to:
 ![Admin_Dashboard](public/screenshots/admin-dashboard.png)
 
 ### 👤 User Management
-![user_managment](public/screenshots/user managment.png)
+![user_managment](public/screenshots/user-managment.png)
 
-![edit_user](public/screenshots/edit user.png)
+![edit_user](public/screenshots/edit-user.png)
 
-![delete_user](public/screenshots/delete user.png)
+![delete_user](public/screenshots/delete-user.png)
 
 ### 📊 Penetration Testing Reports
-![Pen_Reports](public/screenshots/attacks report.png)
+![Pen_Reports](public/screenshots/attacks-report.png)
 
 ### 🧪 Test Payload Interface
-![Test_Payload](public/screenshots/test payload.png)
+![Test_Payload](public/screenshots/test-payload.png)
 ---
 
 # 🛠️ Tech Stack
