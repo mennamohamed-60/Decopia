@@ -125,24 +125,26 @@ Pen Tester has access to:
 
 ## Screenshots 🖼️
 ### Home page
-![Home Page](public/screenshots/home page.png)
+![home_page](public/screenshots/home page.png)
 
 ### Login
 ![login](public/screenshots/login.png)
 
 ### 🧑‍💼 Admin Dashboard
-![Admin Dashboard](public/screenshots/admin-dashboard.png)
+![Admin_Dashboard](public/screenshots/admin-dashboard.png)
 
 ### 👤 User Management
-![User Management](public/screenshots/user managment.png)
-![edit user](public/screenshots/edit user.png)
-![delete user](public/screenshots/delete user.png)
+![user_managment](public/screenshots/user managment.png)
+
+![edit_user](public/screenshots/edit user.png)
+
+![delete_user](public/screenshots/delete user.png)
 
 ### 📊 Penetration Testing Reports
-![Pen Reports](public/screenshots/attacks report.png)
+![Pen_Reports](public/screenshots/attacks report.png)
 
 ### 🧪 Test Payload Interface
-![Test Payload](public/screenshots/test payload.png)
+![Test_Payload](public/screenshots/test payload.png)
 ---
 
 # 🛠️ Tech Stack
@@ -192,6 +194,7 @@ The UI follows a **dark cybersecurity-oriented theme** inspired by SOC dashboard
 ---
 
 # 📂 Project Structure
+```plaintext
 Project Root
 ├── public/
 ├── src/
@@ -284,7 +287,7 @@ Project Root
 ├── vercel.json
 └── vite.config.js
 
-
+```
 The structure is modular and role-oriented to maintain scalability and clarity.
 
 ---
