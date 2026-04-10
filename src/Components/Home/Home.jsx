@@ -20,7 +20,7 @@ export default function Home() {
         <div >
 
            <h1 className=" text-6xl text-cyan-50">Decopia Security System </h1>
-           <p className=" text-cyan-50 text-4xl mt-10">Smart Cybersecurity Monitoring and Deception Platform </p>
+           <p className=" text-cyan-50 text-4xl mt-10">Know Your Attackers Before They Know You </p>
 
            <button
               onClick={() => navigate("/login")}
