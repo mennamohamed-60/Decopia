@@ -1,6 +1,7 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Home from "./Components/Home/Home.jsx";
 import Login from "./Components/Login/Login.jsx";
@@ -30,7 +31,17 @@ import Layout from "./Components/Layout/Layout.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute.jsx";
 import AuthRoute from "./Components/AuthRoute/AuthRoute.jsx";
 import Error from "./Components/Error/Error.jsx";
+import SecurityReports from "./Components/Security/SecurityReports.jsx";
+import SecurityReportPayloads from "./Components/Security/SecurityReportPayloads/SecurityReportPayloads.jsx";
+import AploadRules from "./Components/Security/AploadRules/AploadRules.jsx";
+import ForgetPassword from "./Components/ForgetPassword/ForgetPassword.jsx";
+import Documentation from "./Components/Back/Documentation/Documentation.jsx";
+import SecurityRules from "./Components/Back/SecurityRules/SecurityRules.jsx";
+import WazuhDashboard from "./Components/Customer/WazuhDashboard.jsx";
+import CustomerDashboard from "./Components/Customer/CustomerDashboard.jsx";
 
+
+const queryClient = new QueryClient();
 
 function App() {
   const routes = createBrowserRouter([
@@ -86,6 +97,24 @@ function App() {
           }}
         >
           <Login></Login>
+        </AuthRoute>
+      ),
+    },
+    {
+      path: "/forgetPassword",
+      element: (
+        <AuthRoute
+          redirectByRole={{
+            Admin: "/admin",
+            frontend: "/front",
+            backend: "/back",
+            security: "/security",
+            customer: "/customer",
+            soc: "/soc",
+            pen: "/pen",
+          }}
+        >
+          <ForgetPassword></ForgetPassword>
         </AuthRoute>
       ),
     },
@@ -149,6 +178,31 @@ function App() {
             </ProtectedRoute>
           ),
         },
+
+
+        {
+          path: "/customer",
+          element: (
+             <ProtectedRoute allowedRoles={["customer"]}>
+              <Customer></Customer>
+            </ProtectedRoute>
+          ),
+          children: [
+            {
+              index: true,
+              element: <WazuhDashboard></WazuhDashboard>,
+            },
+            {
+              path: "customerAccount",
+
+              element: <CustomerDashboard></CustomerDashboard>,
+            },
+
+            
+          ],
+        },
+
+
         {
           path: "/soc",
           element: (
@@ -194,6 +248,22 @@ function App() {
               <Security></Security>
             </ProtectedRoute>
           ),
+          children: [
+            {
+              index: true,
+              element: <AploadRules></AploadRules>,
+            },
+            {
+              path: "securityReports",
+
+              element: <SecurityReports></SecurityReports>,
+            },
+
+            {
+              path: "attack/:attackName",
+              element: <SecurityReportPayloads></SecurityReportPayloads>,
+            },
+          ],
         },
         {
           path: "/front",
@@ -210,7 +280,21 @@ function App() {
               <Back></Back>
             </ProtectedRoute>
           ),
+          children: [
+            {
+              index: true,
+              element: <Documentation></Documentation>,
+            },
+            {
+              path: "securityRules",
+
+              element:<SecurityRules></SecurityRules>,
+            },
+
+            
+          ],
         },
+        
       ],
     },
 
@@ -222,9 +306,11 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-950 text-gray-50">
-        <RouterProvider router={routes}></RouterProvider>
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className="min-h-screen bg-slate-950 text-gray-50">
+          <RouterProvider router={routes} />
+        </div>
+      </QueryClientProvider>
     </>
   );
 }

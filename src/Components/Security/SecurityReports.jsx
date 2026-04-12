@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import ReportLoading from "./ReportLoading";
+import ReportLoading from "../Pen/PenReports/ReportLoading";
 import { Link } from "react-router-dom";
-import RulesFileTable from "../../Security/AploadRules/RulesFileTable.jsx";
+import RuleSetUploader from "./AploadRules/RuleSetUploader.jsx";
+import RulesFileTable from "./AploadRules/RulesFileTable.jsx";
 
-export default function PenReports() {
+export default function SecurityReports() {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 8;
 
@@ -23,7 +24,7 @@ export default function PenReports() {
   };
 
   const { data: attacks = [], isLoading } = useQuery({
-    queryKey: ["attack-summary"],
+    queryKey: ["security-attack-summary"],
     queryFn: fetchSummary,
     refetchOnWindowFocus: true,
     refetchInterval: 5000,
@@ -99,7 +100,7 @@ export default function PenReports() {
                       <td className="px-2 md:px-4 py-2 md:py-3 text-center whitespace-nowrap">
                         <Link
                           className="px-2 md:px-3 py-1 text-xs bg-teal-600 hover:bg-teal-700 text-white rounded-md transition"
-                          to={`/pen/attack/${encodeURIComponent(
+                          to={`/security/attack/${encodeURIComponent(
                             attack.attackName,
                           )}`}
                           state={{ attack }}
@@ -119,7 +120,7 @@ export default function PenReports() {
               <button
                 onClick={() => setCurrentPage((prev) => prev - 1)}
                 disabled={currentPage === 1}
-                className="px-3 py-1 bg-gray-700 text-white rounded disabled:opacity-50 cursor-pointer"
+                className="px-3 py-1 bg-gray-700 text-white rounded disabled:opacity-50"
               >
                 Previous
               </button>
@@ -131,7 +132,7 @@ export default function PenReports() {
               <button
                 onClick={() => setCurrentPage((prev) => prev + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1 bg-gray-700 text-white rounded disabled:opacity-50 cursor-pointer"
+                className="px-3 py-1 bg-gray-700 text-white rounded disabled:opacity-50"
               >
                 Next
               </button>
@@ -140,9 +141,7 @@ export default function PenReports() {
         </section>
       </div>
 
-      <div className="container m-auto  pb-10">
-        <RulesFileTable />
-      </div>
+      
     </>
   );
 }

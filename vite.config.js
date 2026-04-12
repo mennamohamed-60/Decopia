@@ -4,5 +4,14 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+   server: {
+    proxy: {
+      "/slack-api": {
+        target: "https://slack.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/slack-api/, ""),
+      },
+    },
+  },
   
 })

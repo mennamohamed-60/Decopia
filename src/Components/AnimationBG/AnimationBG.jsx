@@ -21,7 +21,7 @@ export default function AnimationBG() {
     },
 
     particles: {
-      number: { value: 150 }, 
+      number: { value: 100 }, 
       color: { value: "#14b8a6" },
       links: {
         enable: true,

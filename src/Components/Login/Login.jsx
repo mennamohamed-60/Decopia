@@ -8,6 +8,7 @@ import { schema } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data"
 import { zodResolver } from "@hookform/resolvers/zod/src/zod";
 import axios from "axios";
 import { PulseLoader } from "react-spinners";
+import ForgetPassword from "../ForgetPassword/ForgetPassword";
 
 export default function Login() {
   const [isSusses, setisSusses] = useState(false);
@@ -195,12 +196,12 @@ export default function Login() {
             )}
 
             <div className="flex  justify-center">
-              <a
-                href="#"
+              <Link
+                to ="/forgetPassword"
                 className="ms-2 text-sm font-medium hover:underline   text-teal-500"
               >
                 Forget Password ?
-              </a>
+              </Link>
 
               
             </div>
