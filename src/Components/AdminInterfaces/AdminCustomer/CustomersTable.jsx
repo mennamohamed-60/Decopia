@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
-import CustomerDetailsModal from "./CustomerDetailsModal.jsx";
+import CustomerDetailsModal from "./Customerdetailsmodal.jsx";
 import EditCustomerModal from "./EditCustomerModal.jsx";
 
 const ROWS_PER_PAGE = 6;
