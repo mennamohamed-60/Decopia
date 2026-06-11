@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 
-const SLACK_TOKEN = import.meta.env.REACT_APP_SLACK_TOKEN;
+const SLACK_TOKEN = import.meta.env.VITE_SLACK_TOKEN;
 
 const CHANNEL_ID = "C0B08KXM3K4";
 
-const ROWS_PER_PAGE = 6; 
+const ROWS_PER_PAGE = 6;
 
 function getLevelStyle(level) {
   const n = parseInt(level);
@@ -101,7 +101,9 @@ function TableSkeleton({ rows = 8 }) {
     <tr
       key={i}
       className="border-b border-[#1a3535] animate-pulse"
-      style={{ background: i % 2 === 0 ? "transparent" : "rgba(20,184,166,0.03)" }}
+      style={{
+        background: i % 2 === 0 ? "transparent" : "rgba(20,184,166,0.03)",
+      }}
     >
       <td className="px-4 py-3">
         <div className="h-6 w-24 rounded-full bg-gray-700" />
@@ -154,7 +156,9 @@ function PayloadModal({ log, onClose }) {
             <i className="fa-solid fa-file-code" />
           </span>
           <div>
-            <h2 className="text-white font-bold text-[16px]">Payload Details</h2>
+            <h2 className="text-white font-bold text-[16px]">
+              Payload Details
+            </h2>
             <p className="text-xs text-gray-400">{formatTime(log.timestamp)}</p>
           </div>
         </div>
@@ -162,7 +166,9 @@ function PayloadModal({ log, onClose }) {
         <div className="flex flex-col gap-3 mb-5">
           <div className="flex items-center justify-between rounded-lg border border-[#2e4a48] bg-gray-800 px-4 py-2.5">
             <span className="text-xs text-gray-400 font-medium">Attack</span>
-            <span className="text-sm text-gray-100 font-semibold">{log.attack}</span>
+            <span className="text-sm text-gray-100 font-semibold">
+              {log.attack}
+            </span>
           </div>
           <div className="flex items-center justify-between rounded-lg border border-[#2e4a48] bg-gray-800 px-4 py-2.5">
             <span className="text-xs text-gray-400 font-medium">Level</span>
@@ -170,20 +176,29 @@ function PayloadModal({ log, onClose }) {
           </div>
           <div className="flex items-center justify-between rounded-lg border border-[#2e4a48] bg-gray-800 px-4 py-2.5">
             <span className="text-xs text-gray-400 font-medium">Source IP</span>
-            <span className="font-mono text-sm text-teal-400">{log.sourceIP}</span>
+            <span className="font-mono text-sm text-teal-400">
+              {log.sourceIP}
+            </span>
           </div>
           {log.decoy && (
             <div className="flex items-center justify-between rounded-lg border border-[#2e4a48] bg-gray-800 px-4 py-2.5">
               <span className="text-xs text-gray-400 font-medium">Decoy</span>
-              <span className="font-mono text-sm text-gray-300">{log.decoy}</span>
+              <span className="font-mono text-sm text-gray-300">
+                {log.decoy}
+              </span>
             </div>
           )}
           <div className="flex items-center justify-between rounded-lg border border-[#2e4a48] bg-gray-800 px-4 py-2.5">
-            <span className="text-xs text-gray-400 font-medium">New Attacks</span>
+            <span className="text-xs text-gray-400 font-medium">
+              New Attacks
+            </span>
             <span
               className="px-3 py-1 rounded-full text-xs font-bold font-mono"
               style={{
-                background: parseInt(log.totalAttacks) > 10 ? "rgba(226,75,74,0.15)" : "rgba(20,184,166,0.1)",
+                background:
+                  parseInt(log.totalAttacks) > 10
+                    ? "rgba(226,75,74,0.15)"
+                    : "rgba(20,184,166,0.1)",
                 color: parseInt(log.totalAttacks) > 10 ? "#e24b4a" : "#14b8a6",
               }}
             >
@@ -199,11 +214,15 @@ function PayloadModal({ log, onClose }) {
           </p>
           {log.payload ? (
             <div className="rounded-lg border border-teal-900 bg-gray-800 px-4 py-3">
-              <p className="font-mono text-sm text-teal-500 break-all leading-relaxed">{log.payload}</p>
+              <p className="font-mono text-sm text-teal-500 break-all leading-relaxed">
+                {log.payload}
+              </p>
             </div>
           ) : (
             <div className="rounded-lg border border-[#2e4a48] bg-gray-800 px-4 py-3">
-              <p className="text-sm text-gray-500 italic">No payload captured.</p>
+              <p className="text-sm text-gray-500 italic">
+                No payload captured.
+              </p>
             </div>
           )}
         </div>
@@ -229,7 +248,10 @@ export default function WazuhDashboard() {
       let allMessages = [];
       let cursor = null;
       do {
-        const url = new URL("/slack-api/api/conversations.history", window.location.origin);
+        const url = new URL(
+          "/slack-api/api/conversations.history",
+          window.location.origin,
+        );
         url.searchParams.set("channel", CHANNEL_ID);
         url.searchParams.set("limit", "200");
         if (cursor) url.searchParams.set("cursor", cursor);
@@ -267,7 +289,9 @@ export default function WazuhDashboard() {
   }, [fetchLogs]);
 
   useEffect(() => {
-    const handler = (e) => { if (e.key === "Escape") setSelectedLog(null); };
+    const handler = (e) => {
+      if (e.key === "Escape") setSelectedLog(null);
+    };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
@@ -283,7 +307,9 @@ export default function WazuhDashboard() {
     const matchLevel =
       filterLevel === "all" ||
       (filterLevel === "critical" && parseInt(log.level) >= 12) ||
-      (filterLevel === "medium" && parseInt(log.level) >= 8 && parseInt(log.level) < 12) ||
+      (filterLevel === "medium" &&
+        parseInt(log.level) >= 8 &&
+        parseInt(log.level) < 12) ||
       (filterLevel === "low" && parseInt(log.level) < 8);
     return matchSearch && matchLevel;
   });
@@ -292,18 +318,33 @@ export default function WazuhDashboard() {
   const totalPages = Math.max(1, Math.ceil(filtered.length / ROWS_PER_PAGE));
 
   // لو الـ filter اتغيرت نرجع للصفحة الأولى
-  useEffect(() => { setCurrentPage(1); }, [search, filterLevel]);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, filterLevel]);
 
   const paginatedRows = filtered.slice(
     (currentPage - 1) * ROWS_PER_PAGE,
-    currentPage * ROWS_PER_PAGE
+    currentPage * ROWS_PER_PAGE,
   );
 
   const criticalCount = logs.filter((l) => parseInt(l.level) >= 12).length;
-  const mediumCount = logs.filter((l) => parseInt(l.level) >= 8 && parseInt(l.level) < 12).length;
-  const totalAttacksSum = logs.reduce((sum, l) => sum + parseInt(l.totalAttacks || 0), 0);
+  const mediumCount = logs.filter(
+    (l) => parseInt(l.level) >= 8 && parseInt(l.level) < 12,
+  ).length;
+  const totalAttacksSum = logs.reduce(
+    (sum, l) => sum + parseInt(l.totalAttacks || 0),
+    0,
+  );
 
-  const TABLE_HEADERS = ["Level", "Attack Type", "Source IP", "Decoy", "Payload", "New Attacks", "Time"];
+  const TABLE_HEADERS = [
+    "Level",
+    "Attack Type",
+    "Source IP",
+    "Decoy",
+    "Payload",
+    "New Attacks",
+    "Time",
+  ];
 
   return (
     <div className="min-h-screen bg-slate-950 font-sans pt-8">
@@ -330,19 +371,43 @@ export default function WazuhDashboard() {
             className="flex items-center gap-2 rounded-lg bg-teal-500 px-6 py-[10px] text-sm font-bold text-black transition-all hover:bg-teal-600 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading ? (
-              <><i className="fa-solid fa-spinner fa-spin" /> Loading...</>
+              <>
+                <i className="fa-solid fa-spinner fa-spin" /> Loading...
+              </>
             ) : (
-              <><i className="fa-solid fa-rotate-right" /> Refresh</>
+              <>
+                <i className="fa-solid fa-rotate-right" /> Refresh
+              </>
             )}
           </button>
         </div>
 
         {/* Stat Cards */}
         <div className="flex gap-3 mb-6 flex-wrap">
-          <StatCard label="Total Logs" value={logs.length} icon="fa-solid fa-list" accent="#14b8a6" />
-          <StatCard label="Critical" value={criticalCount} icon="fa-solid fa-triangle-exclamation" accent="#e24b4a" />
-          <StatCard label="Medium" value={mediumCount} icon="fa-solid fa-circle-exclamation" accent="#f59e0b" />
-          <StatCard label="Total Attack Events" value={totalAttacksSum.toLocaleString()} icon="fa-solid fa-bolt" accent="#60a5fa" />
+          <StatCard
+            label="Total Logs"
+            value={logs.length}
+            icon="fa-solid fa-list"
+            accent="#14b8a6"
+          />
+          <StatCard
+            label="Critical"
+            value={criticalCount}
+            icon="fa-solid fa-triangle-exclamation"
+            accent="#e24b4a"
+          />
+          <StatCard
+            label="Medium"
+            value={mediumCount}
+            icon="fa-solid fa-circle-exclamation"
+            accent="#f59e0b"
+          />
+          <StatCard
+            label="Total Attack Events"
+            value={totalAttacksSum.toLocaleString()}
+            icon="fa-solid fa-bolt"
+            accent="#60a5fa"
+          />
         </div>
 
         {/* Filters */}
@@ -411,7 +476,12 @@ export default function WazuhDashboard() {
                       <tr
                         key={log.id}
                         className="border-b border-[#1a3535] transition-colors hover:bg-[#1a3535]"
-                        style={{ background: i % 2 === 0 ? "transparent" : "rgba(20,184,166,0.03)" }}
+                        style={{
+                          background:
+                            i % 2 === 0
+                              ? "transparent"
+                              : "rgba(20,184,166,0.03)",
+                        }}
                       >
                         <td className="px-4 py-3 whitespace-nowrap">
                           <Badge level={log.level} />
@@ -423,7 +493,9 @@ export default function WazuhDashboard() {
                           {log.sourceIP}
                         </td>
                         <td className="px-4 py-3 text-xs text-gray-300 font-mono whitespace-nowrap">
-                          {log.decoy || <span className="text-gray-600">—</span>}
+                          {log.decoy || (
+                            <span className="text-gray-600">—</span>
+                          )}
                         </td>
                         <td className="px-4 py-3">
                           {log.payload ? (
@@ -442,8 +514,14 @@ export default function WazuhDashboard() {
                           <span
                             className="px-3 py-1 rounded-full text-xs font-bold font-mono"
                             style={{
-                              background: parseInt(log.totalAttacks) > 10 ? "rgba(226,75,74,0.15)" : "rgba(20,184,166,0.1)",
-                              color: parseInt(log.totalAttacks) > 10 ? "#e24b4a" : "#14b8a6",
+                              background:
+                                parseInt(log.totalAttacks) > 10
+                                  ? "rgba(226,75,74,0.15)"
+                                  : "rgba(20,184,166,0.1)",
+                              color:
+                                parseInt(log.totalAttacks) > 10
+                                  ? "#e24b4a"
+                                  : "#14b8a6",
                             }}
                           >
                             {log.totalAttacks}
@@ -473,8 +551,8 @@ export default function WazuhDashboard() {
               Previous
             </button>
             <span className="text-sm text-gray-400 font-mono">
-              Page <span className="text-white font-bold">{currentPage}</span> of{" "}
-              <span className="text-white font-bold">{totalPages}</span>
+              Page <span className="text-white font-bold">{currentPage}</span>{" "}
+              of <span className="text-white font-bold">{totalPages}</span>
             </span>
             <button
               onClick={() => setCurrentPage((prev) => prev + 1)}
