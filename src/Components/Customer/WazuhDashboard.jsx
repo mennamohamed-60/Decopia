@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
-const SLACK_TOKEN ="import.meta.env.REACT_APP_SLACK_TOKEN";
+const SLACK_TOKEN = import.meta.env.REACT_APP_SLACK_TOKEN;
+
 const CHANNEL_ID = "C0B08KXM3K4";
 
 const ROWS_PER_PAGE = 6; 
