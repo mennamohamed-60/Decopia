@@ -140,9 +140,9 @@ export default function PenReports() {
         </section>
       </div>
 
-      <div className="container m-auto  pb-10">
+      {/* <div className="container m-auto  pb-10">
         <RulesFileTable />
-      </div>
+      </div> */}
     </>
   );
 }

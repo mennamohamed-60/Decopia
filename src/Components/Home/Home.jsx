@@ -1,46 +1,5 @@
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import AnimationBG from "../AnimationBG/AnimationBG.jsx";
-// import HomeNavbar from "../HomeNavbar/HomeNavbar.jsx";
 
-// export default function Home() {
-//   const navigate = useNavigate();
-//   return (
-//     <>
-//       <AnimationBG />
 
-//       <HomeNavbar></HomeNavbar>
-
-//       <div className=" relative  text-center flex justify-center items-center  h-[80vh] ">
-//         <div>
-//           <h1 className=" text-6xl text-cyan-50">Decopia Security System </h1>
-//           <p className=" text-cyan-50 text-4xl mt-10">
-//             Know Your Attackers Before They Know You{" "}
-//           </p>
-
-//           <button
-//             onClick={() => navigate("/login")}
-//             type="button"
-//             className="text-white bg-teal-500 hover:bg-teal-600 transition-colors duration-200 focus:outline-none  font-medium rounded-lg   text-base px-4 py-2 text-center cursor-pointer mt-10  me-5  w-32 "
-//           >
-//             Login
-//           </button>
-
-//           <button
-//             type="button"
-//             className="text-teal-500 hover:text-white border border-teal-500 hover:bg-teal-500  focus:outline-none font-medium rounded-lg text-base px-4 py-2 text-center w-32 me-2 mb-2 cursor-pointer
-            
-            
-            
-//            "
-//           >
-//             Learn More{" "}
-//           </button>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
 
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -65,32 +24,32 @@ function useReveal() {
 /* ─── data ─── */
 const services = [
   {
-    icon: "🎭",
+    icon: "fa-solid fa-masks-theater",
     title: "Decoy Web Environments",
     desc: "Deploy fully customizable fake web pages — login portals, admin panels, API endpoints — that mimic your real systems and silently lure attackers into revealing their tactics.",
   },
   {
-    icon: "🔍",
+    icon: "fa-solid fa-magnifying-glass",
     title: "Behavioral Analysis",
     desc: "Every attacker interaction is captured and analyzed using rule-based detection and regex pattern matching, building a behavioral profile without relying on known signatures.",
   },
   {
-    icon: "⚡",
+    icon: "fa-solid fa-bolt",
     title: "Real-Time Alerting",
     desc: "Detected threats are instantly classified by severity — low, medium, high, or critical — and forwarded to your SOC team via Wazuh SIEM integration through Syslog.",
   },
   {
-    icon: "📊",
+    icon: "fa-solid fa-chart-pie",
     title: "Intuitive Dashboard",
     desc: "A React-powered dashboard gives security analysts and SME owners clear visibility into sessions, attack trends, decoy health status, and exportable security reports.",
   },
   {
-    icon: "🔗",
+    icon: "fa-solid fa-link",
     title: "SIEM / SOC Integration",
     desc: "Structured JSON logs are normalized and forwarded to Wazuh, enabling correlation, alert classification, and deep investigation through the Discover feature.",
   },
   {
-    icon: "🐳",
+    icon: "fa-brands fa-docker",
     title: "Flexible Deployment",
     desc: "Ship Decopia as a SaaS multi-tenant solution or deploy it on your own server via Docker containers — no enterprise infrastructure required.",
   },
@@ -105,17 +64,17 @@ const stats = [
 
 const teamValues = [
   {
-    icon: "🛡️",
+    icon: "fa-solid fa-shield-halved",
     title: "Proactive Defense",
     desc: "We believe security shouldn't be reactive. Decopia catches attackers during reconnaissance — before damage occurs.",
   },
   {
-    icon: "💡",
+    icon: "fa-solid fa-lightbulb",
     title: "Simplicity First",
     desc: "Complex threat intelligence, made simple. Our dashboard translates raw attacker data into clear business insights.",
   },
   {
-    icon: "🌍",
+    icon: "fa-solid fa-earth-africa",
     title: "Built for MENA",
     desc: "Designed with the Middle East and Africa region in mind — regional threat intelligence, local support, and SME-friendly pricing.",
   },
@@ -218,9 +177,7 @@ export default function Home() {
 
         {/* Scroll cue */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-teal-500/60">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <i className="fa-solid fa-chevron-down text-2xl"></i>
         </div>
       </section>
 
@@ -290,7 +247,7 @@ export default function Home() {
             {teamValues.map((v, i) => (
               <Reveal key={i} delay={i * 120}>
                 <div className="group bg-white/5 border border-teal-900/40 hover:border-teal-500/50 rounded-2xl p-7 transition-all duration-300 hover:bg-teal-500/5 hover:-translate-y-1">
-                  <span className="text-3xl mb-4 block">{v.icon}</span>
+                  <i className={`${v.icon} text-3xl text-teal-400 mb-4 block`}></i>
                   <h4 className="text-lg font-semibold text-white mb-2">{v.title}</h4>
                   <p className="text-gray-400 text-sm leading-relaxed">{v.desc}</p>
                 </div>
@@ -325,7 +282,7 @@ export default function Home() {
                   {/* corner accent */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-teal-500/5 rounded-bl-full transition-all duration-300 group-hover:bg-teal-500/10" />
 
-                  <span className="text-4xl mb-5 block">{svc.icon}</span>
+                  <i className={`${svc.icon} text-3xl text-teal-400 mb-5 block`}></i>
                   <h4 className="text-lg font-semibold text-white mb-3">{svc.title}</h4>
                   <p className="text-gray-400 text-sm leading-relaxed">{svc.desc}</p>
 
@@ -362,7 +319,7 @@ export default function Home() {
                   <ul className="space-y-2">
                     {tier.features.map((f, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm text-gray-400">
-                        <span className="text-teal-400">✓</span> {f}
+                        <i className="fa-solid fa-check text-teal-400"></i> {f}
                       </li>
                     ))}
                   </ul>
@@ -405,13 +362,13 @@ export default function Home() {
             <Reveal direction="left">
               <div className="space-y-8">
                 {[
-                  { icon: "📍", label: "Location", value: "Fayoum University, Egypt" },
-                  { icon: "📧", label: "Email", value: "contact@decopia.io" },
-                  { icon: "🌍", label: "Market", value: "Egypt · KSA · UAE · GCC" },
-                  { icon: "🤝", label: "Partnerships", value: "Open to MSSPs & SOCs" },
+                  { icon: "fa-solid fa-location-dot", label: "Location", value: "Fayoum University, Egypt" },
+                  { icon: "fa-solid fa-envelope", label: "Email", value: "contact@decopia.io" },
+                  { icon: "fa-solid fa-earth-africa", label: "Market", value: "Egypt · KSA · UAE · GCC" },
+                  { icon: "fa-solid fa-handshake", label: "Partnerships", value: "Open to MSSPs & SOCs" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4">
-                    <span className="text-2xl mt-0.5">{item.icon}</span>
+                    <i className={`${item.icon} text-2xl text-teal-400 mt-0.5 w-6 text-center`}></i>
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-widest">{item.label}</p>
                       <p className="text-white font-medium mt-0.5">{item.value}</p>
